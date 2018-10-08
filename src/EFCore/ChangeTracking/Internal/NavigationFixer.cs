@@ -372,6 +372,11 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking.Internal
                         {
                             SetNavigation(entry, dependentToPrincipal, null);
                         }
+                        else
+                        {
+                            // FK has changed but navigation is still null
+                            entry.SetIsLoaded(dependentToPrincipal, false);
+                        }
                     }
 
                     stateManager.UpdateDependentMap(entry, foreignKey);
